@@ -8,16 +8,12 @@ import re
 from pathlib import Path
 from setup import  get_desktop_path, get_tempate_file, open_filedialog, show_messagebox
 
-
-def main():
-    create_manifest()
-
 def create_manifest():
-    """Choose two files, creates df and new name for template file"""
+    """From two chosen files (ELL- and MRN-file) creates dataframe and merges the data into new files for each involved party."""
 
-    file_ell = open_filedialog("Select ELL file")
+    file_ell = open_filedialog("Select ELL-file")
 
-    file_mrn = open_filedialog("Select MRN file", Path(file_ell).parent)
+    file_mrn = open_filedialog("Select MRN-file", Path(file_ell).parent)
 
     df_ell = pd.read_excel(file_ell, sheet_name="Manifest")
     df_mrn = pd.read_excel(file_mrn, sheet_name="Finland Customs")
@@ -69,5 +65,6 @@ def create_manifest():
             wb.close()
     
     show_messagebox("OK")
-        
-main()
+
+if __name__ == "__main__":
+    create_manifest()
