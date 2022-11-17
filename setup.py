@@ -84,4 +84,3 @@ def get_tempate_file():
     path = f'C:\\Users\\{username}\\Documents\\python_templates\\template-mrn.xlsx'
 
     return path
-
