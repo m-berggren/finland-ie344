@@ -75,9 +75,13 @@ def show_messagebox(type):
             message="The files do not match, please run program again and choose new files.",
         )
 
-    if type == "No path":
+    if type == "No path found":
+        messagebox.showwarning(title="Info", message="Path to desktop not found.")
+
+    if type == "MRN-column":
         messagebox.showwarning(
-            title="Info", message="Hittar inte path till skrivbordet."
+            title="MRN-column found already exist",
+            message="ELL-file already includes a MRN-column. Please choose a new file.",
         )
 
 
@@ -92,7 +96,7 @@ def get_template_file():
     return path
 
 
-def example_files():
+def get_example_files():
 
     ell_path = os.path.join(os.getcwd(), "example_files\\ell\\ARATL_22032_NLRTM.xls")
     mrn_path = os.path.join(os.getcwd(), "example_files\\mrn\\MRN_NLRTM.xls")

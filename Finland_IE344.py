@@ -19,12 +19,12 @@ import os
 import re
 from pathlib import Path
 
-from setup import (
+from functions import (
     get_desktop_path,
     get_template_file,
     open_filedialog,
     show_messagebox,
-    example_files,
+    get_example_files,
 )
 
 
@@ -40,6 +40,10 @@ def create_manifest(file_ell=None, file_mrn=None) -> str:
     # Pandas reads the two excel files into dataframes
     df_ell = pd.read_excel(file_ell, sheet_name="Manifest")
     df_mrn = pd.read_excel(file_mrn, sheet_name="Finland Customs")
+
+    if "MRN" in df_ell.columns:
+        show_messagebox("MRN-column")
+        exit()
 
     # Checks if path to excel template file exists, else it will use template file from repository.
     path_template = get_template_file()
@@ -110,5 +114,5 @@ def create_manifest(file_ell=None, file_mrn=None) -> str:
 
 
 if __name__ == "__main__":
-    """Load the files from folder 'example_files' and will save the results on the desktop."""
-    create_manifest(file_ell=example_files()[0], file_mrn=example_files()[1])
+    # Load the files from folder 'example_files' and will save the results on the desktop.
+    create_manifest(file_ell=get_example_files()[0], file_mrn=get_example_files()[1])
