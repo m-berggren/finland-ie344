@@ -1,16 +1,20 @@
-import tkinter as tk
 import getpass
 import os
-
 from pathlib import Path
+import tkinter as tk
 from tkinter import filedialog, messagebox
 
 
 def get_desktop_path():
+    """
+    Function to get the correct desktop path.
+    - Checks if English or Swedish spelling.
+    - Checks if desktop is synchronized with OneDrive.
+
+    """
     
     username = getpass.getuser()
     
-    # get desktop path
     if os.path.exists(f'C:\\Users\\{username}\\Skrivbordet'):
         desktop_path = f'C:\\Users\\{username}\\Skrivbordet'
 
@@ -28,7 +32,6 @@ def get_desktop_path():
         exit()
 
     return desktop_path
-
 
 def get_file_name():
     home_path = str(Path.home())
@@ -78,9 +81,12 @@ def show_messagebox(type):
             message="Hittar inte path till skrivbordet."
         )
 
-def get_tempate_file():
+def get_template_file():
 
     username = getpass.getuser()
     path = f'C:\\Users\\{username}\\Documents\\python_templates\\template-mrn.xlsx'
+
+    if not os.path.exists(path):
+        path = os.path.join(os.getcwd(), 'templates\\template-mrn.xlsx')
 
     return path
