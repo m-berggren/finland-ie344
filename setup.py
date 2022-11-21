@@ -12,38 +12,40 @@ def get_desktop_path():
     - Checks if desktop is synchronized with OneDrive.
 
     """
-    
+
     username = getpass.getuser()
-    
-    if os.path.exists(f'C:\\Users\\{username}\\Skrivbordet'):
-        desktop_path = f'C:\\Users\\{username}\\Skrivbordet'
 
-    elif os.path.exists(f'C:\\Users\\{username}\\Desktop'):
-        desktop_path = f'C:\\Users\\{username}\\Desktop'
+    if os.path.exists(f"C:\\Users\\{username}\\Skrivbordet"):
+        desktop_path = f"C:\\Users\\{username}\\Skrivbordet"
 
-    elif os.path.exists(f'C:\\Users\\{username}\\OneDrive - BOLLORE\\Skrivbordet'):
-        desktop_path = f'C:\\Users\\{username}\\OneDrive - BOLLORE\\Skrivbordet'
+    elif os.path.exists(f"C:\\Users\\{username}\\Desktop"):
+        desktop_path = f"C:\\Users\\{username}\\Desktop"
 
-    elif os.path.exists(f'C:\\Users\\{username}\\OneDrive - BOLLORE\\Desktop'):
-        desktop_path = f'C:\\Users\\{username}\\OneDrive - BOLLORE\\Desktop'
+    elif os.path.exists(f"C:\\Users\\{username}\\OneDrive - BOLLORE\\Skrivbordet"):
+        desktop_path = f"C:\\Users\\{username}\\OneDrive - BOLLORE\\Skrivbordet"
+
+    elif os.path.exists(f"C:\\Users\\{username}\\OneDrive - BOLLORE\\Desktop"):
+        desktop_path = f"C:\\Users\\{username}\\OneDrive - BOLLORE\\Desktop"
 
     else:
-        show_messagebox("No path")
+        show_messagebox("Path to desktop not found.")
         exit()
 
     return desktop_path
 
+
 def get_file_name():
     home_path = str(Path.home())
-    service_dir = r'\BOLLORE\XPF - Documents\SERVICES'
+    service_dir = r"\BOLLORE\XPF - Documents\SERVICES"
     paths_joined = os.path.join(home_path + service_dir)
 
     return paths_joined
 
+
 def open_filedialog(file_title, path=None):
 
     service_path = get_file_name() if path is None else path
-    
+
     root = tk.Tk()
     root.lift()
     root.withdraw()
@@ -51,42 +53,48 @@ def open_filedialog(file_title, path=None):
     filename = filedialog.askopenfilename(
         initialdir=service_path,
         title=file_title,
-        filetypes=[("Excel files", ".xls .xlsx")]
-        )
+        filetypes=[("Excel files", ".xls .xlsx")],
+    )
 
     root.quit()
 
     if filename == "":
         exit()
-    
+
     return filename
+
 
 def show_messagebox(type):
 
     if type == "OK":
-        messagebox.showinfo(
-            title = "Info",
-            message="Filerna finns nu på skrivbordet."
-        )
-    
+        messagebox.showinfo(title="Info", message="The files are now on the desktop")
+
     if type == "No match":
         messagebox.showwarning(
             title="Info",
-            message="Filerna matchar inte, kör om programmet och välj nya filer."
+            message="The files do not match, please run program again and choose new files.",
         )
 
     if type == "No path":
         messagebox.showwarning(
-            title="Info",
-            message="Hittar inte path till skrivbordet."
+            title="Info", message="Hittar inte path till skrivbordet."
         )
+
 
 def get_template_file():
 
     username = getpass.getuser()
-    path = f'C:\\Users\\{username}\\Documents\\python_templates\\template-mrn.xlsx'
+    path = f"C:\\Users\\{username}\\Documents\\python_templates\\template-mrn.xlsx"
 
     if not os.path.exists(path):
-        path = os.path.join(os.getcwd(), 'templates\\template-mrn.xlsx')
+        path = os.path.join(os.getcwd(), "templates\\template-mrn.xlsx")
 
     return path
+
+
+def example_files():
+
+    ell_path = os.path.join(os.getcwd(), "example_files\\ell\\ARATL_22032_NLRTM.xls")
+    mrn_path = os.path.join(os.getcwd(), "example_files\\mrn\\MRN_NLRTM.xls")
+
+    return ell_path, mrn_path
