@@ -1,6 +1,6 @@
 # Finland IE344 - Excel merger
 
-Finland IE344 is a small program used to merge data from two chosen excel files.
+This is a small program used to merge data from two chosen excel files.
 First file (ELL) has all the data needed for manifestation and second file has
 Movement Reference Number (MRN) from Finnish customs tied to containers.
 The data is merged and then new files are created:
