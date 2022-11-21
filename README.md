@@ -12,10 +12,10 @@ If script is run directly then the two files in folder 'example_files' will be u
 and the result will be saved on the desktop.
 
 ## Packages in use
-'Tkinter'
-'Pandas'
-'Xlwings'
-'Numpy'
+`Tkinter`
+`Pandas`
+`Xlwings`
+`Numpy`
 
 ## License
 MIT
